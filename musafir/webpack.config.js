@@ -9,9 +9,10 @@ module.exports = {
   entry: "./src/index",
   mode: "development",
   devServer: {
-    static: path.join(__dirname, "dist"),
+    static: path.join(__dirname, "mbiz-7000"),
     compress: true,
-    port: 3001,
+    port: 7000,
+    historyApiFallback: true,
   },
   output: {
     publicPath: "auto",
@@ -33,11 +34,14 @@ module.exports = {
     new ModuleFederationPlugin({
       name: "musafir",
       remotes: {
-        musafirFlight: "musafirFlight@http://localhost:3002/remoteEntry.js",
-        musafirHotel: "musafirHotel@http://localhost:3003/remoteEntry.js",
+        musafirFlight: "musafirFlight@http://localhost:7001/musafir-flight-remoteEntry.js",
+        musafirHotel: "musafirHotel@http://localhost:7002/musafir-hotel-remoteEntry.js",
+        // musafirFlight: "musafirFlight@http://43.205.14.219:7001/remoteEntry.js",
+        // musafirHotel: "musafirHotel@http://43.205.14.219:7002/remoteEntry.js",
       },
       shared: { react: { singleton: true }, 
-               "react-dom": { singleton: true }
+               "react-dom": { singleton: true },
+               "react-router-dom": { singleton: true }
               }
     }),
     new ExternalTemplateRemotesPlugin(),

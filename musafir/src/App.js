@@ -1,29 +1,31 @@
 import React, { Suspense } from 'react';
-const MusafirFlight = React.lazy(() => import("musafirFlight/App"));
-const MusafirHotel = React.lazy(() => import("musafirHotel/App"));
-
+import Home from './home/home';
+import {
+  Navigate,
+  Route,
+  BrowserRouter as Routers,
+  Routes
+} from "react-router-dom";
+import Hotel from './hotel/Hotel';
+import Flight from './flight/Flight';
 const App = () => {
+  console.log("first")
 
   return (
-    <div>
-      <div
-        style={{
-          margin: "10px",
-          padding: "10px",
-          textAlign: "center",
-          backgroundColor: "greenyellow",
-        }}
-      >
-        <h1>Musafir</h1>
-      </div>
-      <Suspense fallback={<div>.</div>}>
-        <MusafirHotel />
+    <Routers>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          {/** Public Routes */}
+          <Route path="*" element={<Navigate to={"/dashboard"} replace />} />
+          <Route path={"/dashboard"} element={<Home />} />
+          <Route path={"/mufafir-flight"} element={<Hotel />} />
+          <Route path={"/mufafir-hotel"} element={<Flight />} />
+        </Routes>
       </Suspense>
-      <Suspense fallback={<div>.</div>}>
-        <MusafirFlight />
-      </Suspense>
-    </div>
+    </Routers>
   );
 };
 
 export default App;
+
+

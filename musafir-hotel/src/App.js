@@ -11,7 +11,7 @@ const App = () => {
         backgroundColor: 'cyan',
       }}
     >
-      <h1>Musafir Hotel</h1>
+      <h1>Musafir Hotel.</h1>
       <HotelListing />
     </div>
   );

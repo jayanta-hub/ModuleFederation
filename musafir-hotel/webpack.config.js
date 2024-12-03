@@ -6,8 +6,8 @@ module.exports = {
   entry: "./src/index",
   mode: "development",
   devServer: {
-    static: path.join(__dirname, "dist"),
-    port: 3003,
+    static: path.join(__dirname, "mbiz-hotel-7002"),
+    port: 7002,
   },
   output: {
     publicPath: "auto",
@@ -28,7 +28,7 @@ module.exports = {
     // To learn more about the usage of this plugin, please visit https://webpack.js.org/plugins/module-federation-plugin/
     new ModuleFederationPlugin({
       name: "musafirHotel",
-      filename: "remoteEntry.js",
+      filename: "musafir-hotel-remoteEntry.js",
       exposes: {
         "./App": "./src/App",
       },
